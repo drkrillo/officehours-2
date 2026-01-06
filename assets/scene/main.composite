@@ -1269,20 +1269,20 @@
         "578": {
           "json": {
             "position": {
-              "x": 8.296192169189453,
-              "y": 2,
-              "z": 13.606438636779785
-            },
-            "scale": {
-              "x": 5.099999904632568,
-              "y": 3.299999952316284,
-              "z": 1
+              "x": 8,
+              "y": 1.8500003814697266,
+              "z": 13.510002136230469
             },
             "rotation": {
               "x": 0,
               "y": 1,
               "z": 0,
               "w": 0
+            },
+            "scale": {
+              "x": 4,
+              "y": 4,
+              "z": 1
             },
             "parent": 531
           }
@@ -3576,18 +3576,26 @@
         "serializationType": "map"
       },
       "data": {
-        "0": {
+        "578": {
           "json": {
-            "gizmo": 0
+            "gizmo": 1
           }
         }
       }
     },
     {
-      "name": "inspector::SceneMetadata-v2",
+      "name": "inspector::SceneMetadata-v1",
       "jsonSchema": {
         "type": "object",
         "properties": {
+          "version": {
+            "type": "integer",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "integer",
+              "serializationType": "int32"
+            }
+          },
           "name": {
             "type": "string",
             "serializationType": "optional",
@@ -3750,6 +3758,43 @@
               "serializationType": "boolean"
             }
           },
+          "skyboxConfig": {
+            "type": "object",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "object",
+              "properties": {
+                "fixedTime": {
+                  "type": "integer",
+                  "serializationType": "optional",
+                  "optionalJsonSchema": {
+                    "type": "integer",
+                    "serializationType": "int32"
+                  }
+                },
+                "transitionMode": {
+                  "type": "integer",
+                  "serializationType": "optional",
+                  "optionalJsonSchema": {
+                    "type": "integer",
+                    "enum": [
+                      0,
+                      1
+                    ],
+                    "default": 0,
+                    "serializationType": "enum-int",
+                    "enumObject": {
+                      "0": "TM_FORWARD",
+                      "1": "TM_BACKWARD",
+                      "TM_FORWARD": 0,
+                      "TM_BACKWARD": 1
+                    }
+                  }
+                }
+              },
+              "serializationType": "map"
+            }
+          },
           "spawnPoints": {
             "type": "array",
             "serializationType": "optional",
@@ -3857,51 +3902,6 @@
               },
               "serializationType": "array"
             }
-          },
-          "skyboxConfig": {
-            "type": "object",
-            "serializationType": "optional",
-            "optionalJsonSchema": {
-              "type": "object",
-              "properties": {
-                "fixedTime": {
-                  "type": "integer",
-                  "serializationType": "optional",
-                  "optionalJsonSchema": {
-                    "type": "integer",
-                    "serializationType": "int32"
-                  }
-                },
-                "transitionMode": {
-                  "type": "integer",
-                  "serializationType": "optional",
-                  "optionalJsonSchema": {
-                    "type": "integer",
-                    "enum": [
-                      0,
-                      1
-                    ],
-                    "default": 0,
-                    "serializationType": "enum-int",
-                    "enumObject": {
-                      "0": "TM_FORWARD",
-                      "1": "TM_BACKWARD",
-                      "TM_FORWARD": 0,
-                      "TM_BACKWARD": 1
-                    }
-                  }
-                }
-              },
-              "serializationType": "map"
-            }
-          },
-          "creator": {
-            "type": "string",
-            "serializationType": "optional",
-            "optionalJsonSchema": {
-              "type": "string",
-              "serializationType": "utf8-string"
-            }
           }
         },
         "serializationType": "map"
@@ -3963,6 +3963,9 @@
             },
             "silenceVoiceChat": false,
             "disablePortableExperiences": false,
+            "skyboxConfig": {
+              "fixedTime": 43200
+            },
             "spawnPoints": [
               {
                 "name": "Spawn Point 1",
@@ -3996,11 +3999,7 @@
                   "z": 8
                 }
               }
-            ],
-            "skyboxConfig": {
-              "fixedTime": 43200
-            },
-            "creator": ""
+            ]
           }
         }
       }
@@ -4247,7 +4246,6 @@
               },
               {
                 "entity": 554,
-                "open": true,
                 "children": [
                   541,
                   543,
@@ -5972,7 +5970,6 @@
                     "core::AudioSource",
                     "core::AudioStream",
                     "core::AvatarAttach",
-                    "core::Billboard",
                     "core::GltfContainer",
                     "core-schema::Network-Entity",
                     "core::Material",
@@ -5990,7 +5987,7 @@
                     "core::LightSource",
                     "core::GltfNodeModifiers",
                     "inspector::Selection",
-                    "inspector::SceneMetadata-v2",
+                    "inspector::SceneMetadata-v1",
                     "inspector::Nodes",
                     "asset-packs::ActionTypes",
                     "asset-packs::Actions",
@@ -6018,7 +6015,6 @@
                     "AUDIO_SOURCE": "core::AudioSource",
                     "AUDIO_STREAM": "core::AudioStream",
                     "AVATAR_ATTACH": "core::AvatarAttach",
-                    "BILLBOARD": "core::Billboard",
                     "GLTF_CONTAINER": "core::GltfContainer",
                     "NETWORK_ENTITY": "core-schema::Network-Entity",
                     "MATERIAL": "core::Material",
@@ -6036,7 +6032,7 @@
                     "LIGHT_SOURCE": "core::LightSource",
                     "GLTF_NODE_MODIFIERS": "core::GltfNodeModifiers",
                     "Selection": "inspector::Selection",
-                    "Scene": "inspector::SceneMetadata-v2",
+                    "Scene": "inspector::SceneMetadata-v1",
                     "Nodes": "inspector::Nodes",
                     "ActionTypes": "asset-packs::ActionTypes",
                     "Actions": "asset-packs::Actions",
@@ -6580,6 +6576,428 @@
       "data": {
         "0": {
           "json": {}
+        }
+      }
+    },
+    {
+      "name": "inspector::SceneMetadata-v2",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "description": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "thumbnail": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "ageRating": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "enum": [
+                "T",
+                "A"
+              ],
+              "default": "T",
+              "serializationType": "enum-string",
+              "enumObject": {
+                "Teen": "T",
+                "Adult": "A"
+              }
+            }
+          },
+          "categories": {
+            "type": "array",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "art",
+                  "game",
+                  "casino",
+                  "social",
+                  "music",
+                  "fashion",
+                  "crypto",
+                  "education",
+                  "shop",
+                  "business",
+                  "sports"
+                ],
+                "default": "game",
+                "serializationType": "enum-string",
+                "enumObject": {
+                  "ART": "art",
+                  "GAME": "game",
+                  "CASINO": "casino",
+                  "SOCIAL": "social",
+                  "MUSIC": "music",
+                  "FASHION": "fashion",
+                  "CRYPTO": "crypto",
+                  "EDUCATION": "education",
+                  "SHOP": "shop",
+                  "BUSINESS": "business",
+                  "SPORTS": "sports"
+                }
+              },
+              "serializationType": "array"
+            }
+          },
+          "author": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "email": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "tags": {
+            "type": "array",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "serializationType": "utf8-string"
+              },
+              "serializationType": "array"
+            }
+          },
+          "layout": {
+            "type": "object",
+            "properties": {
+              "base": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "integer",
+                    "serializationType": "int32"
+                  },
+                  "y": {
+                    "type": "integer",
+                    "serializationType": "int32"
+                  }
+                },
+                "serializationType": "map"
+              },
+              "parcels": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "integer",
+                      "serializationType": "int32"
+                    },
+                    "y": {
+                      "type": "integer",
+                      "serializationType": "int32"
+                    }
+                  },
+                  "serializationType": "map"
+                },
+                "serializationType": "array"
+              }
+            },
+            "serializationType": "map"
+          },
+          "silenceVoiceChat": {
+            "type": "boolean",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "boolean",
+              "serializationType": "boolean"
+            }
+          },
+          "disablePortableExperiences": {
+            "type": "boolean",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "boolean",
+              "serializationType": "boolean"
+            }
+          },
+          "spawnPoints": {
+            "type": "array",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "serializationType": "utf8-string"
+                  },
+                  "default": {
+                    "type": "boolean",
+                    "serializationType": "optional",
+                    "optionalJsonSchema": {
+                      "type": "boolean",
+                      "serializationType": "boolean"
+                    }
+                  },
+                  "position": {
+                    "type": "object",
+                    "properties": {
+                      "x": {
+                        "type": "object",
+                        "properties": {
+                          "single": {
+                            "type": "integer",
+                            "serializationType": "int32"
+                          },
+                          "range": {
+                            "type": "array",
+                            "items": {
+                              "type": "integer",
+                              "serializationType": "int32"
+                            },
+                            "serializationType": "array"
+                          }
+                        },
+                        "serializationType": "one-of"
+                      },
+                      "y": {
+                        "type": "object",
+                        "properties": {
+                          "single": {
+                            "type": "integer",
+                            "serializationType": "int32"
+                          },
+                          "range": {
+                            "type": "array",
+                            "items": {
+                              "type": "integer",
+                              "serializationType": "int32"
+                            },
+                            "serializationType": "array"
+                          }
+                        },
+                        "serializationType": "one-of"
+                      },
+                      "z": {
+                        "type": "object",
+                        "properties": {
+                          "single": {
+                            "type": "integer",
+                            "serializationType": "int32"
+                          },
+                          "range": {
+                            "type": "array",
+                            "items": {
+                              "type": "integer",
+                              "serializationType": "int32"
+                            },
+                            "serializationType": "array"
+                          }
+                        },
+                        "serializationType": "one-of"
+                      }
+                    },
+                    "serializationType": "map"
+                  },
+                  "cameraTarget": {
+                    "type": "object",
+                    "serializationType": "optional",
+                    "optionalJsonSchema": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "integer",
+                          "serializationType": "int32"
+                        },
+                        "y": {
+                          "type": "integer",
+                          "serializationType": "int32"
+                        },
+                        "z": {
+                          "type": "integer",
+                          "serializationType": "int32"
+                        }
+                      },
+                      "serializationType": "map"
+                    }
+                  }
+                },
+                "serializationType": "map"
+              },
+              "serializationType": "array"
+            }
+          },
+          "skyboxConfig": {
+            "type": "object",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "object",
+              "properties": {
+                "fixedTime": {
+                  "type": "integer",
+                  "serializationType": "optional",
+                  "optionalJsonSchema": {
+                    "type": "integer",
+                    "serializationType": "int32"
+                  }
+                },
+                "transitionMode": {
+                  "type": "integer",
+                  "serializationType": "optional",
+                  "optionalJsonSchema": {
+                    "type": "integer",
+                    "enum": [
+                      0,
+                      1
+                    ],
+                    "default": 0,
+                    "serializationType": "enum-int",
+                    "enumObject": {
+                      "0": "TM_FORWARD",
+                      "1": "TM_BACKWARD",
+                      "TM_FORWARD": 0,
+                      "TM_BACKWARD": 1
+                    }
+                  }
+                }
+              },
+              "serializationType": "map"
+            }
+          },
+          "creator": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          }
+        },
+        "serializationType": "map"
+      },
+      "data": {
+        "0": {
+          "json": {
+            "name": "OfficeHours 2.0",
+            "description": "Team Building Decentraland",
+            "thumbnail": "assets/images/autogenerated-thumbnail.png",
+            "ageRating": "T",
+            "categories": [],
+            "author": "SDK",
+            "email": "",
+            "tags": [],
+            "layout": {
+              "parcels": [
+                {
+                  "x": 0,
+                  "y": 2
+                },
+                {
+                  "x": 1,
+                  "y": 2
+                },
+                {
+                  "x": 2,
+                  "y": 2
+                },
+                {
+                  "x": 0,
+                  "y": 1
+                },
+                {
+                  "x": 1,
+                  "y": 1
+                },
+                {
+                  "x": 2,
+                  "y": 1
+                },
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 1,
+                  "y": 0
+                },
+                {
+                  "x": 2,
+                  "y": 0
+                }
+              ],
+              "base": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "silenceVoiceChat": false,
+            "disablePortableExperiences": false,
+            "spawnPoints": [
+              {
+                "name": "Spawn Point 1",
+                "default": true,
+                "position": {
+                  "x": {
+                    "$case": "range",
+                    "value": [
+                      0,
+                      3
+                    ]
+                  },
+                  "y": {
+                    "$case": "range",
+                    "value": [
+                      0,
+                      0
+                    ]
+                  },
+                  "z": {
+                    "$case": "range",
+                    "value": [
+                      0,
+                      3
+                    ]
+                  }
+                },
+                "cameraTarget": {
+                  "x": 8,
+                  "y": 1,
+                  "z": 8
+                }
+              }
+            ],
+            "skyboxConfig": {
+              "fixedTime": 43200
+            },
+            "creator": ""
+          }
         }
       }
     }
