@@ -1,6 +1,7 @@
 import { Transform, MeshRenderer, MeshCollider, AvatarModifierArea, AvatarModifierType, engine } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import { type GameController } from '../controllers/game.controller'
+import { getTeamHubEntity } from '../start'
 
 export const JAIL_CENTER = Vector3.create(10.07, 10, 10.58)
 
@@ -38,37 +39,43 @@ export class Jail {
     // North
     Transform.create(this.collidersJailStructureN, {
       position: Vector3.create(center.x, center.y + wallHeight / 2, center.z - boxLength / 2),
-      scale: Vector3.create(boxWidth, wallHeight, wallThickness)
+      scale: Vector3.create(boxWidth, wallHeight, wallThickness),
+      parent: getTeamHubEntity()
     })
 
     // South
     Transform.create(this.collidersJailStructureS, {
       position: Vector3.create(center.x, center.y + wallHeight / 2, center.z + boxLength / 2),
-      scale: Vector3.create(boxWidth, wallHeight, wallThickness)
+      scale: Vector3.create(boxWidth, wallHeight, wallThickness),
+      parent: getTeamHubEntity()
     })
 
     // East
     Transform.create(this.collidersJailStructureE, {
       position: Vector3.create(center.x + boxWidth / 2, center.y + wallHeight / 2, center.z),
-      scale: Vector3.create(wallThickness, wallHeight, boxLength)
+      scale: Vector3.create(wallThickness, wallHeight, boxLength),
+      parent: getTeamHubEntity()
     })
 
     // West
     Transform.create(this.collidersJailStructureW, {
       position: Vector3.create(center.x - boxWidth / 2, center.y + wallHeight / 2, center.z),
-      scale: Vector3.create(wallThickness, wallHeight, boxLength)
+      scale: Vector3.create(wallThickness, wallHeight, boxLength),
+      parent: getTeamHubEntity()
     })
 
     // Floor
     const floorHeight = 0.01
     Transform.create(this.collidersJailStructureFloor, {
       position: Vector3.create(center.x, center.y - floorHeight / 2, center.z),
-      scale: Vector3.create(boxWidth, floorHeight, boxLength)
+      scale: Vector3.create(boxWidth, floorHeight, boxLength),
+      parent: getTeamHubEntity()
     })
 
     // Hide Players Area
     Transform.create(this.hideAvatarsArea, {
-      position: Vector3.create(center.x, center.y, center.z)
+      position: Vector3.create(center.x, center.y, center.z),
+      parent: getTeamHubEntity()
     })
 
     if (IS_JAIL_VISIBLE) {

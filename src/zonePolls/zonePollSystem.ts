@@ -1,4 +1,4 @@
-import { engine, type Entity } from '@dcl/sdk/ecs'
+import { engine, Transform, type Entity } from '@dcl/sdk/ecs'
 import { ZonePollState } from './pollEntity'
 
 import { type GameController } from '../controllers/game.controller'
@@ -18,6 +18,7 @@ import {
   listenToActivities
 } from '../activities/activitiesEntity'
 import { type ComponentState } from '../utils'
+import { getTeamHubEntity } from '../start'
 
 export const zoneIcons = [
   'images/createZonePollUi/circle.png',
@@ -124,12 +125,16 @@ export class ZonePollSystem {
     if (zonePollState === null) return
 
     this.currentZonePollAlreadyClosed = false
+    const rootPos = Transform.get(getTeamHubEntity()).position
+
+    const withRootOffset = (x: number, y: number, z: number): Vector3 =>
+      Vector3.create(rootPos.x + x, rootPos.y + y, rootPos.z + z)
 
     const zones = [
-      { color: Color4.Red(), position: Vector3.create(2.83, 0.14, 6.64) },
-      { color: Color4.Green(), position: Vector3.create(6, 0.18, 3.4) },
-      { color: Color4.Yellow(), position: Vector3.create(10.54, 0.2, 3.21) },
-      { color: Color4.Blue(), position: Vector3.create(13.1, 0.2, 6.64) }
+      { color: Color4.Red(), position: withRootOffset(2.83, 0.14, 6.64) },
+      { color: Color4.Green(), position: withRootOffset(6.0, 0.18, 3.4) },
+      { color: Color4.Yellow(), position: withRootOffset(10.54, 0.2, 3.21) },
+      { color: Color4.Blue(), position: withRootOffset(13.1, 0.2, 6.64) }
     ] as const
 
     zonePollState.options.forEach((option, index) => {
