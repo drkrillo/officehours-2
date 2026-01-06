@@ -10,6 +10,7 @@ import {
 import { type GameController } from '../controllers/game.controller'
 import { BounceComponent, withPlayerInfo } from '../utils'
 import { Vector3 } from '@dcl/sdk/math'
+import { getTeamHubEntity } from '../start'
 
 export function setupPodium(gameController: GameController): void {
   const podiumOrNull = engine.getEntityOrNullByName('Podium')
@@ -69,7 +70,8 @@ export function setupPodium(gameController: GameController): void {
     GltfContainer.create(arrow, { src: 'assets/models/target_arrow.glb' })
     Transform.create(arrow, {
       position: Vector3.create(8, 3, 9),
-      scale: Vector3.create(1, 1, 1)
+      scale: Vector3.create(1, 1, 1),
+      parent: getTeamHubEntity()
     })
     BounceComponent.create(arrow, {
       amplitude: 0.3,
