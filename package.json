@@ -1,0 +1,54 @@
+{
+  "name": "@dcl-regenesislabs/teamhub-lib",
+  "version": "1.0.4",
+  "description": "SDK7 TeamHub",
+  "main": "src/start.ts",
+  "scripts": {
+    "start": "sdk-commands start",
+    "start-new-explorer": "sdk-commands start --explorer-alpha --hub --skip-auth-screen --landscape-terrain-enabled",
+    "deploy": "sdk-commands deploy",
+    "build": "sdk-commands build",
+    "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next",
+    "postinstall": "node scripts/copy-assets.cjs"
+  },
+  "devDependencies": {
+    "@dcl/asset-packs": "latest",
+    "@dcl/js-runtime": "7.17.0",
+    "@dcl/sdk": "7.17.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-config-standard-with-typescript": "^43.0.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-react": "^7.37.5",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.5.3"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/decentraland-scenes/teamhub-library.git"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 120,
+    "trailingComma": "none"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "@dcl-sdk/utils": "^1.3.2",
+    "dcl-ui-toolkit": "^0.10.0"
+  }
+}
