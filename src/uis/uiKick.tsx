@@ -6,7 +6,7 @@ import { getPlayer } from '@dcl/sdk/src/players'
 import { engine } from '@dcl/sdk/ecs'
 import { type GameController } from '../controllers/game.controller'
 import { PlayerStateComponent } from '../controllers/player.controller'
-import { JAIL_CENTER } from '../jail/jail'
+import { getJailCenterWithRootOffset } from '../jail/jail'
 
 export class KickUI {
   public blackScreenVisibility: boolean = false
@@ -27,7 +27,7 @@ export class KickUI {
     const isBanned = bannedList.includes(player.userId.toLowerCase()) || bannedList.includes(player.name.toLowerCase())
 
     if (isBanned && !this.wasKicked) {
-      void movePlayerTo({ newRelativePosition: JAIL_CENTER })
+      void movePlayerTo({ newRelativePosition: getJailCenterWithRootOffset() })
       this.gameController.uiController.closeAllUis()
       this.blackScreenVisibility = true
       this.wasKicked = true
