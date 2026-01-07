@@ -5,6 +5,11 @@ import { getTeamHubEntity } from '../start'
 
 export const JAIL_CENTER = Vector3.create(10.07, 10, 10.58)
 
+export function getJailCenterWithRootOffset(): Vector3 {
+  const rootPos = Transform.get(getTeamHubEntity()).position
+  return Vector3.create(rootPos.x + JAIL_CENTER.x, rootPos.y + JAIL_CENTER.y, rootPos.z + JAIL_CENTER.z)
+}
+
 // Change to true to make jail visible for debug purposes
 const IS_JAIL_VISIBLE: boolean = false
 
