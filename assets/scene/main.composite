@@ -1273,16 +1273,16 @@
               "y": 1.8500003814697266,
               "z": 13.510002136230469
             },
+            "scale": {
+              "x": 4,
+              "y": 4,
+              "z": 1
+            },
             "rotation": {
               "x": 0,
               "y": 1,
               "z": 0,
               "w": 0
-            },
-            "scale": {
-              "x": 4,
-              "y": 4,
-              "z": 1
             },
             "parent": 531
           }
@@ -1844,7 +1844,7 @@
         "513": {
           "json": {
             "src": "assets/models/voting_zone01.gltf",
-            "visibleMeshesCollisionMask": 0,
+            "visibleMeshesCollisionMask": 2,
             "invisibleMeshesCollisionMask": 3
           }
         },
@@ -1858,21 +1858,21 @@
         "515": {
           "json": {
             "src": "assets/models/voting_zone02.gltf",
-            "visibleMeshesCollisionMask": 0,
+            "visibleMeshesCollisionMask": 2,
             "invisibleMeshesCollisionMask": 3
           }
         },
         "516": {
           "json": {
             "src": "assets/models/voting_zone03.gltf",
-            "visibleMeshesCollisionMask": 0,
+            "visibleMeshesCollisionMask": 2,
             "invisibleMeshesCollisionMask": 3
           }
         },
         "517": {
           "json": {
             "src": "assets/models/voting_zone04.gltf",
-            "visibleMeshesCollisionMask": 0,
+            "visibleMeshesCollisionMask": 2,
             "invisibleMeshesCollisionMask": 3
           }
         },
@@ -3576,9 +3576,9 @@
         "serializationType": "map"
       },
       "data": {
-        "578": {
+        "517": {
           "json": {
-            "gizmo": 1
+            "gizmo": 0
           }
         }
       }
